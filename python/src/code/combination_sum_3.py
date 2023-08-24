@@ -1,4 +1,4 @@
-from leetcode import sorted_2d_equals
+from leetcode.test import sorted_2d_equals
 
 
 def combinations(k: int, n: int) -> list[list[int]]:

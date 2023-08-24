@@ -1,4 +1,4 @@
-from leetcode import sorted_2d_equals
+from leetcode.test import sorted_2d_equals
 
 
 def subsets(nums: list[int]) -> list[list[int]]:

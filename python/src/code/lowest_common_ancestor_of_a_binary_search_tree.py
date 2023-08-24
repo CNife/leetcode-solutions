@@ -1,4 +1,4 @@
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from leetcode import ListNode, new_list
+from leetcode.list import ListNode, new_list
 
 
 def detect_cycle(head: ListNode) -> Optional[ListNode]:

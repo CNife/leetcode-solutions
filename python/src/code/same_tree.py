@@ -1,4 +1,4 @@
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def is_same_tree(lhs: TreeNode, rhs: TreeNode) -> bool:

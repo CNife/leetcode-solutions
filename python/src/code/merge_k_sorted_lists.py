@@ -2,7 +2,7 @@ from collections import namedtuple
 from heapq import heappop, heappush, heapreplace
 from typing import Optional
 
-from leetcode import ListNode, new_list
+from leetcode.list import ListNode, new_list
 
 
 def merge_k_lists(lists: list[Optional[ListNode]]) -> Optional[ListNode]:

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def build_tree(preorder: list[int], inorder: list[int]) -> Optional[TreeNode]:

@@ -1,6 +1,6 @@
 from collections import deque
 
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def count_nodes(root: TreeNode) -> int:

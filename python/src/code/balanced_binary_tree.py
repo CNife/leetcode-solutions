@@ -1,4 +1,4 @@
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def is_balanced(root: TreeNode) -> bool:

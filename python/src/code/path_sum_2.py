@@ -1,4 +1,5 @@
-from leetcode import TreeNode, new_tree, sorted_equals
+from leetcode.test import sorted_equals
+from leetcode.tree import TreeNode, new_tree
 
 
 def path_sum(root: TreeNode, target: int) -> list[list[int]]:

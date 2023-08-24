@@ -1,4 +1,4 @@
-from leetcode import TreeNode, inorder_traverse, new_tree
+from leetcode.tree import TreeNode, inorder_traverse, new_tree
 
 
 def insert_into_bst(root: TreeNode, val: int) -> TreeNode:

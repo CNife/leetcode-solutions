@@ -1,4 +1,4 @@
-from leetcode import sorted_equals
+from leetcode.test import sorted_equals
 
 
 def solve_n_queens(n: int) -> list[list[str]]:

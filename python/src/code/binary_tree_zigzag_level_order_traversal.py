@@ -1,4 +1,4 @@
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def zigzag_level_order(root: TreeNode) -> list[list[int]]:

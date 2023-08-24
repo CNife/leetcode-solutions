@@ -1,6 +1,7 @@
 from typing import Optional
 
-from leetcode import ListNode, TreeNode, is_valid_avl, new_list
+from leetcode.list import ListNode, new_list
+from leetcode.tree import TreeNode, is_valid_avl
 
 
 def sorted_list_to_bst(head: Optional[ListNode]) -> Optional[TreeNode]:

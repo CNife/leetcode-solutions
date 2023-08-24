@@ -1,4 +1,4 @@
-from leetcode import ListNode, new_list
+from leetcode.list import ListNode, new_list
 
 
 def reverse_group(head: ListNode, k: int) -> ListNode:

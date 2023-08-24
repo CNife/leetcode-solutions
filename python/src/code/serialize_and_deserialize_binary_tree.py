@@ -1,7 +1,7 @@
 from collections import deque
 from typing import Optional
 
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def serialize(root: TreeNode) -> str:

@@ -5,7 +5,7 @@ https://leetcode-cn.com/problems/leaf-similar-trees/
 
 from itertools import zip_longest
 
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def leaf_similar(root1: TreeNode, root2: TreeNode) -> bool:

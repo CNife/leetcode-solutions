@@ -1,4 +1,4 @@
-from leetcode import ListNode, new_cycle_list, new_list
+from leetcode.list import ListNode, new_cycle_list, new_list
 
 
 def has_cycle(head: ListNode) -> bool:

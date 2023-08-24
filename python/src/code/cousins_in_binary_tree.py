@@ -5,7 +5,7 @@ https://leetcode-cn.com/problems/cousins-in-binary-tree/
 
 from collections import deque
 
-from leetcode import TreeNode, new_tree
+from leetcode.tree import TreeNode, new_tree
 
 
 def is_cousins(root: TreeNode, x: int, y: int) -> bool:
