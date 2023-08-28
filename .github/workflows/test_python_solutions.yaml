@@ -16,10 +16,10 @@ jobs:
           cache: pip
 
       - name: install pip dependencies
-        run: pip install -r requirements.lock
+        run: pip install -r python/requirements.lock
 
       - name: run tests
         run: |
           echo '```plaintext' >> $GITHUB_STEP_SUMMARY
-          python test_all.py | tee -a $GITHUB_STEP_SUMMARY
+          python python/test_all.py | tee -a $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
