@@ -1,5 +1,7 @@
 name: Test all python solutions
+
 on: push
+
 jobs:
   test-all-solutions:
     runs-on: ubuntu-latest
@@ -19,7 +21,4 @@ jobs:
         run: |
           cd python
           export DEFAULT_PYTHON=python
-          
-          echo '```plaintext' >> $GITHUB_STEP_SUMMARY
-          python test_all.py | tee -a $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          python test_all.py
