@@ -7,16 +7,15 @@ from pathlib import Path
 
 logger = logging.getLogger()
 
-DEFAULT_PYTHON: Path = Path(__file__) / "../.venv/Scripts/python.exe"
-DEFAULT_CODE_DIR: Path = Path(__file__) / "../src/code"
-DEFAULT_APPEND_PYTHON_PATH: list[Path] = [Path(__file__) / "../src"]
+DEFAULT_PYTHON: str = os.environ.get("DEFAULT_PYTHON", os.path.join(__file__, "../.venv/Scripts/python.exe"))
+DEFAULT_CODE_DIR: str = os.environ.get("DEFAULT_CODE_DIR", os.path.join(__file__, "../src/code"))
+DEFAULT_APPEND_PYTHON_PATH: str = os.environ.get("DEFAULT_APPEND_PYTHON_PATH", os.path.join(__file__, "../src"))
 
 
 def main() -> None:
-    python_exe = DEFAULT_PYTHON.resolve()
-    code_dir = DEFAULT_CODE_DIR.resolve()
-    append_python_path = os.pathsep.join(str(p.resolve()) for p in DEFAULT_APPEND_PYTHON_PATH)
-    logger.info(f"python_exe={str(python_exe)}")
+    code_dir = Path(DEFAULT_CODE_DIR).resolve()
+    append_python_path = os.pathsep.join(os.path.abspath(p) for p in DEFAULT_APPEND_PYTHON_PATH.split(","))
+    logger.info(f"python_exe={DEFAULT_PYTHON}")
     logger.info(f"code_dir={str(code_dir)}")
     logger.info(f"{append_python_path=}")
 
@@ -31,7 +30,7 @@ def main() -> None:
         result = list(
             executor.map(
                 run_solution,
-                itertools.repeat(python_exe),
+                itertools.repeat(DEFAULT_PYTHON),
                 [solution for solution in code_dir.glob("*.py") if solution.is_file()],
             )
         )
@@ -39,7 +38,7 @@ def main() -> None:
     logger.info(f"{success_count} success, {len(result) - success_count} failed in {len(result)} solutions")
 
 
-def run_solution(python_exe: Path, solution: Path) -> bool:
+def run_solution(python_exe: str, solution: Path) -> bool:
     process = subprocess.run([str(python_exe), str(solution)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if process.returncode == 0:
         logger.info(f"SUCCESS {solution.stem}")
