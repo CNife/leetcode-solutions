@@ -4,7 +4,7 @@ from array import array
 class DisjointSet:
     def __init__(self, size: int):
         self.size: int = size
-        self.data: array = array('I', range(size))
+        self.data: array = array("I", range(size))
 
     def find(self, x: int) -> int:
         if self.data[x] != x:
