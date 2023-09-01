@@ -5,7 +5,7 @@ from pathlib import Path
 
 def main(name: str, url: str, solution_dir: Path) -> None:
     num = int(re.findall(r"^\d+", name)[0])
-    url_name = re.findall(r"problems/(\S+)/?", url)[0]
+    url_name = re.findall(r"problems/([^/]+)", url)[0]
     solution_path = solution_dir / f"{num}_{url_name.replace('-', '_')}.py"
     solution_path.write_text(f'"""\n{name}\n{url}\n"""\n', encoding="UTF-8")
 
