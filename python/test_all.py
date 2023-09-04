@@ -27,13 +27,13 @@ def main() -> None:
     for solution in code_dir.glob("*.py"):
         if solution.is_file():
             try:
-                subprocess.run(
-                    [str(python_exe), str(solution)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True
-                )
+                subprocess.run([str(python_exe), str(solution)], capture_output=True, text=True, check=True)
                 logger.info(f"SUCCESS {solution.stem}")
             except subprocess.CalledProcessError as e:
                 logger.error(f"FAILED {solution.stem}")
-                raise e
+                logger.error(f"stderr: {e.stderr}")
+                logger.error(f"stdout: {e.stdout}")
+                exit(e.returncode)
     logger.info("ALL DONE")
 
 
