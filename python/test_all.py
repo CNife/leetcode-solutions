@@ -1,6 +1,8 @@
+import itertools
 import logging
 import os
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 logger = logging.getLogger()
@@ -24,17 +26,30 @@ def main() -> None:
         os.environ[python_path] = append_python_path
     logger.info(f"PYTHONPATH={os.environ[python_path]}")
 
-    for solution in code_dir.glob("*.py"):
-        if solution.is_file():
-            try:
-                subprocess.run([str(python_exe), str(solution)], capture_output=True, text=True, check=True)
-                logger.info(f"SUCCESS {solution.stem}")
-            except subprocess.CalledProcessError as e:
-                logger.error(f"FAILED {solution.stem}")
-                logger.error(f"stderr: {e.stderr}")
-                logger.error(f"stdout: {e.stdout}")
-                exit(e.returncode)
-    logger.info("ALL DONE")
+    with ThreadPoolExecutor() as executor:
+        result = list(
+            executor.map(
+                run_solution,
+                itertools.repeat(str(python_exe)),
+                [solution for solution in code_dir.glob("*.py") if solution.is_file()],
+            )
+        )
+    success_count = sum(result)
+    failed_count = len(result) - success_count
+    logger.info(f"{success_count} success, {failed_count} failed in {len(result)} solutions")
+
+    if failed_count > 0:
+        exit(1)
+
+
+def run_solution(python_exe: str, solution: Path) -> bool:
+    process = subprocess.run([str(python_exe), str(solution)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if process.returncode == 0:
+        logger.info(f"SUCCESS {solution.stem}")
+    else:
+        logger.error(f"FAIL {solution.stem}")
+        logger.error(process.stdout)
+    return process.returncode == 0
 
 
 if __name__ == "__main__":
