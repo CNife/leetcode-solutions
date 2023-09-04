@@ -20,5 +20,5 @@ jobs:
       - name: run tests
         run: |
           cd python
-          export DEFAULT_PYTHON=python
+          export PYTHON_EXE=python
           python test_all.py
