@@ -9,7 +9,7 @@ logger = logging.getLogger()
 
 
 def main() -> None:
-    python_exe = Path(os.environ.get("PYTHON_EXE", os.path.join(__file__, "../.venv/Scripts/python.exe"))).resolve()
+    python_exe = os.environ.get("PYTHON_EXE", os.path.join(__file__, "../.venv/Scripts/python.exe"))
     code_dir = Path(os.environ.get("DEFAULT_CODE_DIR", os.path.join(__file__, "../src/code"))).resolve()
     append_python_path = os.pathsep.join(
         os.path.abspath(p)
@@ -30,7 +30,7 @@ def main() -> None:
         result = list(
             executor.map(
                 run_solution,
-                itertools.repeat(str(python_exe)),
+                itertools.repeat(python_exe),
                 [solution for solution in code_dir.glob("*.py") if solution.is_file()],
             )
         )
