@@ -13,6 +13,13 @@ class TreeNode:
     left: Optional["TreeNode"] = None
     right: Optional["TreeNode"] = None
 
+    def get_node(self, val: int) -> Optional["TreeNode"]:
+        if self.val == val:
+            return self
+        if self.left and (node := self.left.get_node(val)):
+            return node
+        return self.right.get_node(val) if self.right else None
+
 
 def new_tree(*nums: Optional[int]) -> Optional[TreeNode]:
     """
