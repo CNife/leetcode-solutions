@@ -6,7 +6,7 @@ https://leetcode.cn/problems/find-the-array-concatenation-value
 
 def find_the_array_concatenation_value(nums: list[int]) -> int:
     def concat_nums(a: int, b: int) -> int:
-        for bound in [10, 100, 1000, 10000]:
+        for bound in [10, 100, 1000, 10000, 100000]:
             if b < bound:
                 return a * bound + b
         raise ValueError("invalid input")
