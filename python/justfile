@@ -1,0 +1,15 @@
+python := "rye run python"
+
+pre-commit: lint format test
+
+lint:
+    ruff check .
+
+format:
+    ruff format .
+
+test:
+    {{ python }} test_all.py
+
+sync:
+    rye sync

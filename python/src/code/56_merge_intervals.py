@@ -6,7 +6,7 @@ https://leetcode.cn/problems/merge-intervals/description/
 
 def merge(intervals: list[list[int]]) -> list[list[int]]:
     result = []
-    for start, end in sorted(intervals, key=lambda l: l[0]):
+    for start, end in sorted(intervals, key=lambda interval: interval[0]):
         if result and result[-1][1] >= start:
             result[-1][1] = max(end, result[-1][1])
         else:

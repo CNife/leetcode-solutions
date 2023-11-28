@@ -3,6 +3,6 @@ def repeated_substring_pattern(s: str) -> bool:
 
 
 if __name__ == "__main__":
-    assert repeated_substring_pattern("abab") == True
-    assert repeated_substring_pattern("aba") == False
-    assert repeated_substring_pattern("abcabcabcabc") == True
+    assert repeated_substring_pattern("abab")
+    assert not repeated_substring_pattern("aba")
+    assert repeated_substring_pattern("abcabcabcabc")

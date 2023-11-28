@@ -1,7 +1,7 @@
 def reverse_string(s: list[str]) -> None:
-    l = len(s)
-    for i in range(l // 2):
-        s[i], s[l - i - 1] = s[l - i - 1], s[i]
+    length = len(s)
+    for i in range(length // 2):
+        s[i], s[length - i - 1] = s[length - i - 1], s[i]
 
 
 if __name__ == "__main__":
