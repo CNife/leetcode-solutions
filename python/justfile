@@ -1,4 +1,5 @@
 python := "rye run python"
+solution_dir := "src/code"
 
 pre-commit: lint format test
 
@@ -11,5 +12,19 @@ format:
 test:
     {{ python }} test_all.py
 
-sync:
-    rye sync
+create-solution name url:
+    #! python
+    import re
+    import subprocess
+    from pathlib import Path
+
+    chinese_name = "{{ name }}"
+    index = int(re.findall(r"^\d+", chinese_name)[0])
+    url = re.findall(r"http\S+problems/[^/]+", "{{ url }}")[0]
+    url_name = re.findall(r"problems/([^/]+)", url)[0].replace('-', '_')
+
+    solution_path = Path("{{ solution_dir }}") / f"{index}_{url_name}.py"
+    print(f"Write to {solution_path.absolute()}")
+    solution_path.write_text(f'"""\n{chinese_name}\n{url}\n"""\n', encoding='UTF-8', newline='\n')
+
+    subprocess.run(["git", "add", str(solution_path)], check=True)
